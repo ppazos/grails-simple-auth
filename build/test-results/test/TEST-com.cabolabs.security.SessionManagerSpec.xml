@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.cabolabs.security.SessionManagerSpec" tests="1" skipped="0" failures="1" errors="0" timestamp="2019-02-12T18:22:37" hostname="torri" time="2.143">
+  <properties/>
+  <testcase name="basic login" classname="com.cabolabs.security.SessionManagerSpec" time="2.143">
+    <failure message="Condition not satisfied:&#10;&#10;run_isauth == expected_isauth&#10;|          |  |&#10;false      |  true&#10;           false&#10;" type="org.spockframework.runtime.SpockComparisonFailure">Condition not satisfied:
+
+run_isauth == expected_isauth
+|          |  |
+false      |  true
+           false
+
+	at com.cabolabs.security.SessionManagerSpec.basic login(SessionManagerSpec.groovy:61)
+</failure>
+  </testcase>
+  <system-out><![CDATA[[com.cabolabs.security.UserMock@6283dbbb, com.cabolabs.security.UserMock@2593e66f, com.cabolabs.security.UserMock@224d0d79]
+[com.cabolabs.security.UserMock@78857468, com.cabolabs.security.UserMock@50e1933b, com.cabolabs.security.UserMock@1cafbe7d]
+[com.cabolabs.security.UserMock@644db0a8, com.cabolabs.security.UserMock@3738ae7d, com.cabolabs.security.UserMock@6b9c9bea]
+[com.cabolabs.security.UserMock@a218cb2, com.cabolabs.security.UserMock@3e0b5ae, com.cabolabs.security.UserMock@7159b8e9]
+[com.cabolabs.security.UserMock@7e152ee3, com.cabolabs.security.UserMock@7857698f, com.cabolabs.security.UserMock@7e1cfeee]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

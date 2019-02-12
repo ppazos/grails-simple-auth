@@ -1,0 +1,23 @@
+<plugin name='grailsSimpleAuth' version='0.1' grailsVersion='3.3.9 &gt; *'>
+  <type>grails.simple.auth.GrailsSimpleAuthGrailsPlugin</type>
+  <authorEmail>pablo.pazos@cabolabs.com</authorEmail>
+  <author>Pablo Pazos</author>
+  <documentation>http://grails.org/plugin/grails-simple-auth</documentation>
+  <profiles>[web]</profiles>
+  <description>This plugin aims to have a minimal and simple implementation for authentication and authorization common operations.
+</description>
+  <title>Grails Simple Auth</title>
+  <version />
+  <grailsVersion>3.3.9 &gt; *</grailsVersion>
+  <license>APACHE</license>
+  <pluginExcludes>[grails-app/views/error.gsp]</pluginExcludes>
+  <issueManagement system='GITHUB' url='https://github.com/ppazos/grails-simple-auth/issues' />
+  <organization name='CaboLabs' url='https://cabolabs.com/' />
+  <name>grails-simple-auth</name>
+  <scm url='https://github.com/ppazos/grails-simple-auth' />
+  <resources>
+    <resource>grails.simple.auth.UrlMappings</resource>
+    <resource>grails.simple.auth.Application</resource>
+    <resource>grails.simple.auth.BootStrap</resource>
+  </resources>
+</plugin>
