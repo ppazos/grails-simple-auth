@@ -15,18 +15,39 @@ class SessionManager {
       instance
    }
 
-   public add(Session sess)
+   public Session getSession(String jsessid)
    {
-
+      return sessions[jsessid]
    }
 
-   public kill(Session sess)
+   public void addSession(Session sess)
    {
-
+      if (sessions.find{ it.key == sess.jsessid })
+      {
+         throw new Exception("The user already has an active session "+ sess.jsessid)
+      }
+      sessions[sess.jsessid] = sess
    }
 
-   public kill(String sessUid)
+   public boolean hasSession(String jsessid)
    {
-      
+      return sessions.find{ it.key == jsessid } != null
+   }
+
+/*
+   public boolean hasSession(String sessUid)
+   {
+      return sessions.find{ it.value.uid == sessUid } != null
+   }
+*/
+
+   public void kill(String jsessid)
+   {
+      def entry = sessions.find{ it.key == jsessid }
+      if (!entry)
+      {
+         throw new Exception("There is no active session with id "+ jsessid)
+      }
+      sessions.remove(jsessid)
    }
 }
