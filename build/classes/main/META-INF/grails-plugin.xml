@@ -19,5 +19,6 @@
     <resource>grails.simple.auth.UrlMappings</resource>
     <resource>grails.simple.auth.Application</resource>
     <resource>grails.simple.auth.BootStrap</resource>
+    <resource>com.cabolabs.security.SimpleAuthTagLib</resource>
   </resources>
 </plugin>
