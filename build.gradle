@@ -9,7 +9,7 @@ buildscript {
     }
 }
 
-version "0.2"
+version "0.3"
 group "grails.simple.auth"
 
 apply plugin:"eclipse"
@@ -71,9 +71,9 @@ grailsPublish {
     license {
         name = 'Apache-2.0'
     }
-    title = "My Plugin"
+    title = "grails-simple-auth"
     desc = "Full plugin description"
-    developers = [johndoe:"John Doe"]
+    developers = [johndoe:"Pablo Pazos"]
 }
 
 
