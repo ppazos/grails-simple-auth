@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.cabolabs.security.SessionManagerSpec" tests="2" skipped="0" failures="0" errors="0" timestamp="2019-02-25T23:21:19" hostname="torri" time="4.519">
-  <properties/>
-  <testcase name="basic authentication" classname="com.cabolabs.security.SessionManagerSpec" time="2.281"/>
-  <testcase name="session creation" classname="com.cabolabs.security.SessionManagerSpec" time="2.238"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

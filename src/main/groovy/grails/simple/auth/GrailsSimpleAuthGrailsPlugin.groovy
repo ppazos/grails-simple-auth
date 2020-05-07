@@ -18,7 +18,7 @@ class GrailsSimpleAuthGrailsPlugin extends Plugin {
     def description = '''\
 This plugin aims to have a minimal and simple implementation for authentication and authorization common operations.
 '''
-    def profiles = ['web']
+    def profiles = ['plugin']
 
     // URL to the plugin's documentation
     def documentation = "http://grails.org/plugin/grails-simple-auth"
