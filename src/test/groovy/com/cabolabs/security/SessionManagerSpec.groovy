@@ -28,23 +28,25 @@ class SessionManagerSpec extends Specification implements GrailsUnitTest {
       UserMock.clean()
    }
 
-   void "basic authentication"()
+   void "basic authentication"(String iuser, String ipass, boolean expected_isauth)
    {
-      when:
+      when:"authentication is executed"
          def authp = new ClosureAuthProvider()
-
-      then:"authentication is executed"
-         def run_isauth = authp.authenticate([user:iuser, pass:ipass]) { ->
+         def result = authp.authenticate([user:iuser, pass:ipass]) { ->
             def u = UserMock.findByUsername(user)
             if (!u)
             {
-               return false
+               return authp.authError("no user")
             }
-            PasswordUtils.isPasswordValid(u.password, pass) // returns boolean
+            if (PasswordUtils.isPasswordValid(u.password, pass))
+            {
+               return authp.authOk("welcome")
+            }
+            authp.authError("wrong credentials")
          }
 
-      expect:
-         run_isauth == expected_isauth
+      then:"check authenticated"
+         result.result == expected_isauth
 
       where:
          iuser | ipass | expected_isauth
@@ -62,15 +64,19 @@ class SessionManagerSpec extends Specification implements GrailsUnitTest {
          def authp = new ClosureAuthProvider()
 
       then:
-         def run_isauth = authp.authenticate([user: iuser, pass: ipass]) { ->
+         def result = authp.authenticate([user: iuser, pass: ipass]) { ->
             def u = UserMock.findByUsername(user)
             if (!u)
             {
-               return false
+               return authp.authError("no user")
             }
-            PasswordUtils.isPasswordValid(u.password, pass) // returns boolean
+            if (PasswordUtils.isPasswordValid(u.password, pass))
+            {
+               return authp.authOk("welcome")
+            }
+            authp.authError("wrong credentials")
          }
-         if (run_isauth)
+         if (result.result)
          {
             //println session.id
             def sess = new Session(jsessid: session.id.toString(),
@@ -84,8 +90,8 @@ class SessionManagerSpec extends Specification implements GrailsUnitTest {
          }
 
       expect:
-         run_isauth == expected_isauth
-         if (run_isauth)
+         result.result == expected_isauth
+         if (result.result)
          {
             man.hasSession(session.id.toString())
             man.getSession(session.id.toString()) != null
@@ -106,6 +112,58 @@ class SessionManagerSpec extends Specification implements GrailsUnitTest {
          'a'   | 'x'   | false
          'x'   | 'x'   | false
 
+   }
+
+   void "get session by user id"()
+   {
+      when:
+         def man = SessionManager.getInstance()
+         def authp = new ClosureAuthProvider()
+
+      then:
+         def result = authp.authenticate([user: iuser, pass: ipass]) { ->
+            def u = UserMock.findByUsername(user)
+            if (!u)
+            {
+               return authp.authError("no user")
+            }
+            if (PasswordUtils.isPasswordValid(u.password, pass))
+            {
+               return authp.authOk("welcome")
+            }
+            authp.authError("wrong credentials")
+         }
+         if (result.result)
+         {
+            //println session.id
+            def sess = new Session(jsessid: session.id.toString(),
+                                   userId: iuser,
+                                   authenticated: true,
+                                   payload: [
+                                     mydata: "abc",
+                                     otherdata: 123
+                                   ])
+            man.addSession(sess)
+         }
+
+      expect:
+         result.result == expected_isauth
+         if (result.result)
+         {
+            man.getSessionByUserId(iuser) != null
+         }
+         else
+         {
+            man.getSessionByUserId(iuser) == null
+         }
+
+      where:
+         iuser | ipass | expected_isauth
+         'a'   | 'a'   | true
+         'b'   | 'b'   | true
+         'c'   | 'c'   | true
+         'a'   | 'x'   | false
+         'x'   | 'x'   | false
    }
 
    /*

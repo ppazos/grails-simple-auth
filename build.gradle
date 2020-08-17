@@ -8,13 +8,14 @@ buildscript {
     }
 }
 
-version "0.4.1"
+version "0.4.2"
 group "grails.simple.auth"
 
 apply plugin:"eclipse"
 apply plugin:"idea"
 apply plugin:"org.grails.grails-plugin"
 apply plugin:"org.grails.grails-plugin-publish"
+apply plugin:"war"
 
 repositories {
    mavenLocal()
@@ -31,6 +32,16 @@ dependencies {
    provided "org.grails:grails-plugin-domain-class"
    testCompile "org.grails:grails-gorm-testing-support"
    testCompile "org.grails:grails-plugin-testing"
+   testCompile "org.grails:grails-web-testing-support"
+
+//testCompile "org.springframework.org:spring-boot-starter-tomcat"
+//    testCompile "org.springframework:spring-webmvc"
+//    testCompile "org.springframework:spring-web"
+//    testCompile "org.springframework:spring-test"
+
+//provided group: 'javax.servlet', name: 'javax.servlet-api', version: '3.0.1'
+   testCompile fileTree(dir: 'lib', include: '*.jar')
+
 }
 
 bootRun {

@@ -20,6 +20,12 @@ class SessionManager {
       return sessions[jsessid]
    }
 
+   public Session getSessionByUserId(String userId)
+   {
+      def entry = sessions.find{ it.value.userId == userId }
+      return entry?.value // could be null
+   }
+
    public void addSession(Session sess)
    {
       if (sessions.find{ it.key == sess.jsessid })
