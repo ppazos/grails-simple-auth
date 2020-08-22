@@ -56,4 +56,10 @@ class SessionManager {
       }
       sessions.remove(jsessid)
    }
+
+   public void status()
+   {
+      def userIds = sessions.collect{ it.value.userId }
+      println "Active sessions userId: "+ userIds.toString()
+   }
 }

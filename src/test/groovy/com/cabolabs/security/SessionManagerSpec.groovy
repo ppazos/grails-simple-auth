@@ -145,6 +145,7 @@ class SessionManagerSpec extends Specification implements GrailsUnitTest {
                                    ])
             man.addSession(sess)
          }
+         man.status()
 
       expect:
          result.result == expected_isauth
