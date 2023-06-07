@@ -8,7 +8,7 @@ buildscript {
     }
 }
 
-version "0.4.3"
+version "0.4.4"
 group "grails.simple.auth"
 
 apply plugin:"eclipse"
