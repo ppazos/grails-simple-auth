@@ -57,6 +57,11 @@ class SessionManager {
       sessions.remove(jsessid)
    }
 
+   public void killAll()
+   {
+      sessions.clear()
+   }
+
    public void status()
    {
       def userIds = sessions.collect{ it.value.userId }
